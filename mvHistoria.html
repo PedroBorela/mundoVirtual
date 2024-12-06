@@ -1,0 +1,291 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="/aframe-interaction.js"></script>
+    <script>
+        AFRAME.registerComponent('click-component-test', {
+            init: function () {
+                this.el.addEventListener('click', function () {
+                    alert('objeto clicado');
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <a-scene stats="false" interactions="raycaster:.clickable" xr-mode-ui="cardboardModeEnabled:true">
+        
+        <!-- Câmera com controle de movimento do mouse usando pointer lock -->
+        <a-camera position="-30 1.6 67" id="camera" rotation="0 0 10"
+            look-controls="pointerLockEnabled: false" wasd-controls>
+            <a-sphere radius="1.25" color="#EEA" ></a-sphere>
+        </a-camera>
+        
+        
+        <a-assets>
+            <!--Trem-->
+            <a-asset-item id="trem"
+                src="https://cdn.glitch.global/6126bfd4-c325-4655-8862-6e5a9a516459/base_basic_pbr.glb?v=1730260133959"></a-asset-item>
+
+            <!--porta-->
+            <a-asset-item id="porta" src="/assets/porta.glb"></a-asset-item>
+
+            <!--Castelo-->
+            <a-asset-item id="castelo" src="/assets/modeloCasteloDoCafe.glb"></a-asset-item>
+
+            <!--trilhos-->
+            <a-asset-item id="track"
+                src="https://cdn.glitch.global/6126bfd4-c325-4655-8862-6e5a9a516459/base.glb?v=1730299656824">
+            </a-asset-item>
+
+            <!--Estátua cafeicultor-->
+            <a-asset-item id="cafeicultor" src="assets/cafeicultor.glb">
+            </a-asset-item>
+
+            <!--Estação de trem-->
+            <a-asset-item id="estacao"
+                src="https://cdn.glitch.global/6126bfd4-c325-4655-8862-6e5a9a516459/trainStation.glb?v=1730261387615"></a-asset-item>
+
+            <!-- <a-asset-item id="castelo"
+                src="https://cdn.glitch.global/6126bfd4-c325-4655-8862-6e5a9a516459/base_basic_shaded.glb?v=1730337520791">
+            </a-asset-item> -->
+
+            <!--Busto serafim tiburcio-->
+
+            <a-asset-item id="busto" src="/assets/bustoSerafim.glb">
+            </a-asset-item>
+            <!--Canario de reduto-->
+
+            <a-asset-item id="canario" src="/assets/canario.glb">
+            </a-asset-item>
+
+
+        </a-assets>
+
+
+
+        <!--Imagem leopoldina railway trem-->
+        <a-image src="https://cdn.glitch.global/6126bfd4-c325-4655-8862-6e5a9a516459/tremManhu.png?v=1730305925559"
+            position="7.5 2.8 -11" class="clickable" click-component-test width="2" height="1.5" scale="4 4 4" rotation="0 -45 0">
+        </a-image>
+
+
+        <a-text id="description" value="Descrição do Trem: Essa ferrovia fazia parte da Estrada de Ferro Leopoldina."
+            color="#FFFFFF" position="8 2 -10" visible="false" align="center" font="/fonte/custom-msdf/custom-msdf.json"
+            width="10" wrap-count="50">
+        </a-text> 
+
+
+        <!--Rotas leopoldina railway-->
+        <a-image
+            src="https://cdn.glitch.global/6126bfd4-c325-4655-8862-6e5a9a516459/Leopoldina_Strecke.jpg?v=1731446939467"
+            position="7.5 2.8 16" width="2" height="1.5" scale="4 4 4" rotation="0 210 0">
+        </a-image>
+
+        <!--Mapa de regiao de manhuacu-->
+        <a-image src="/assets/mapaManhu.png" position="-30 2.5 55" width="2" height="1.5" scale="3 3 3"
+            rotation="0 0 0">
+        </a-image>
+
+        <!--TEXTO BEM VINDO-->
+        <a-image src="/fonte/BemVindo.png" position="-30 0.5 63" width="2" height="1.5" scale="6 6 6" rotation="0 0 0">
+        </a-image>
+
+
+        <!--Texto sobre a estação ferroviária-->
+        <a-image src="/fonte/MalhaTexto.png" position="-10 2.2 20" width="2" height="1.5" scale="6 6 6"
+            rotation="0 180 0">
+        </a-image>
+
+
+
+
+
+        <!-- Texto busto serafim tiburcio-->
+        <a-image src="/fonte/bustoTexto.png" position="-55 2 -23" width="2" height="1.5" scale="6 6 6"
+            rotation="-30 0 0">
+        </a-image>
+
+        <!--Texto estatua-->
+        <a-image src="/fonte/EstatuaTexto.png" position="-83 2 -23" width="2" height="1.5" scale="6 6 6"
+            rotation="-30 0 0">
+        </a-image>
+
+
+        <!--Texto canario-->
+        <a-image src="/fonte/textoCanario.png" position="-100 2 -6" width="2" height="1.5" scale="6 6 6"
+            rotation="-30 90 0">
+        </a-image>
+
+
+        
+
+        <!-- Céu com cor mais neutra -->
+        <a-sky color="#C0D8E0"></a-sky>
+
+        <!--Trem-->
+        <a-entity dynamic-body gltf-model="#trem" position="-10 1.8 -15" scale="6 6 6" rotation="0 90 0"></a-entity>
+
+        <!--Trilho-->
+        <a-entity dynamic-body gltf-model="#track" position="-10 -1.010 -11" scale="6 6 6"></a-entity>
+
+        <!--Estação ferroviaria-->
+        <a-entity dynamic-body gltf-model="#estacao" position="16.5 4.3 2" scale="10 10 10"
+            rotation="0 -90 0"></a-entity>
+
+        <!--Estatua cafeicultor-->
+        <a-entity dynamic-body gltf-model="#cafeicultor" position="-96.5 8.5 -22" scale="10 10 10"
+            rotation="0 0 0"></a-entity>
+
+        <!--Busto serafim tiburcio-->
+        <a-entity dynamic-body gltf-model="#busto" position="-65 2 -22" scale="5 5 5" rotation="0 0 0"></a-entity>
+
+        <!--Canário reduto-->
+        <a-entity dynamic-body gltf-model="#canario" position="-100.5 2.5 2" scale="6 6 6" rotation="0 90 0"></a-entity>
+
+
+        <!--Castelo do café-->
+        <a-entity dynamic-body gltf-model="#castelo" position="60.5 17 50" scale="25 25 25"
+            rotation="0 -90 0"></a-entity>
+
+
+        <!--Porta-->
+        <a-entity dynamic-body gltf-model="#porta" id="img1" position="-25 2 0" scale="10 4 1"
+            rotation="0 -90 0"></a-entity>
+
+        <!--Chão gramado-->
+        <a-plane position="0 -1.1 0" rotation="-90 0 0" width="200" height="200" src="/assets/g1.jpg"
+            static-body></a-plane>
+
+        <!--Chão da area externa-->
+        <a-plane src="https://cdn.glitch.global/6126bfd4-c325-4655-8862-6e5a9a516459/texturaLamin.jpg?v=1730306969867"
+            position="-75 -0.99 0" rotation="-90 0 0" width="70" height="70" color="#aaa" static-body></a-plane>
+
+        <a-plane src="/assets/paredeInterna.png"
+            position="-75 20 0" rotation="90 0 0" width="70" height="70" color="#aaa" static-body></a-plane>
+
+        <!-- Paredes ao redor da plataforma externa com cor #aaa -->
+        <!-- Parede da frente -->
+        <!-- Parede frontal dividida com espaço para uma porta -->
+        <a-plane src="/assets/textura-da-parede-preta.avif" position="-40 1 19" rotation="0 90 0" width="32" height="40"
+            color="#D9D0C1"></a-plane>
+        <a-plane src="/assets/textura-da-parede-preta.avif" position="-40 1 -19" rotation="0 90 0" width="32"
+            height="40" color="#D9D0C1"></a-plane>
+        <a-plane src="/assets/textura-da-parede-preta.avif" position="-40 13 0" rotation="0 90 0" width="3" height="16"
+            scale="2 1 1" color="#D9D0C1"></a-plane>
+
+        <a-plane src="/assets/paredeInterna.png" position="-40 1 19" rotation="0 -90 0"
+            width="32" height="40" color="#D9D0C1"></a-plane>
+        <a-plane src="/assets/paredeInterna.png" position="-40 1 -19" rotation="0 -90 0"
+            width="32" height="40" color="#D9D0C1"></a-plane>
+        <a-plane src="/assets/paredeInterna.png" position="-40 13 0" rotation="0 -90 0"
+            width="3" height="16" scale="2 1 1" color="#D9D0C1"></a-plane>
+
+        <!--Porta-->
+        <a-entity dynamic-body gltf-model="#porta" id="img1" position="-40 2 0" scale="9 4 1"
+            rotation="0 -90 0"></a-entity>
+
+        <!-- Parede direita -->
+        <a-plane src="/assets/paredeInterna.png" position="-75 1.1 -35" rotation="0 0 0" width="70" height="40" color="#aaa" static-body></a-plane>
+        <a-plane src="/assets/textura-da-parede-preta.avif" position="-75 1.1 -35" rotation="180 0 0" width="70"
+            height="40" color="#aaa" static-body></a-plane>
+
+        <!-- Parede da parte de trás -->
+        <a-plane src="/assets/paredeInterna.png" position="-110 1.1 0" rotation="0 90 0" width="70" height="40" color="#aaa" static-body></a-plane>
+        <a-plane src="/assets/textura-da-parede-preta.avif" position="-110 1.1 0" rotation="180 90 0" width="70"
+            height="40" color="#aaa" static-body></a-plane>
+
+        <!-- Parede esquerda -->
+        <a-plane src="/assets/paredeInterna.png" position="-75 1.1 35" rotation="0 180 0" width="70" height="40" color="#aaa" static-body></a-plane>
+        <a-plane src="/assets/textura-da-parede-preta.avif" position="-75 1.1 35" rotation="180 180 0" width="70"
+            height="40" color="#aaa" static-body></a-plane>
+
+
+
+
+
+
+
+
+        <!-- Chão com cor de concreto estacao-->
+        <a-plane src="https://cdn.glitch.global/6126bfd4-c325-4655-8862-6e5a9a516459/texturaLamin.jpg?v=1730306969867"
+            position="0 -1 0" rotation="-90 0 0" width="50" height="50" static-body></a-plane>
+
+
+        <!--teto estacao-->
+        <a-plane src="/assets/paredeInterna.png"
+            position="0 20 0" rotation="90 0 0" width="50" height="50" static-body></a-plane>
+
+
+        <!--Passarela-->
+        <a-plane src="/assets/passarela.jpg" position="-32.5 -0.9 0" rotation="-90 90 0" width="100" height="15"
+            static-body></a-plane>
+
+
+        <!-- Paredes com tons neutros para um ambiente mais realista -->
+        <!--Parede esquerda estação-->
+        <a-plane src="/assets/paredeInterna.png" position="0 1 -25" rotation="0 0 0"
+            width="50" height="40" color="#D9D0C1"></a-plane>
+        <a-plane src="/assets/textura-da-parede-preta.avif" position="0 1 -25" rotation="180 0 0" width="50" height="40"
+            color="#D9D0C1"></a-plane>
+
+
+        <!-- Parede direita estação -->
+        <a-plane src="/assets/paredeInterna.png" position="0 1 25" rotation="0 180 0"
+            width="50" height="40" color="#D9D0C1"></a-plane>
+        <a-plane src="/assets/textura-da-parede-preta.avif" position="0 1 25" rotation="180 180 0" width="50"
+            height="40" color="#D9D0C1"></a-plane>
+
+
+        <!-- Parede traseira -->
+        <a-plane src="/assets/paredeInterna.png" position="25 1 0" rotation="0 -90 0"
+            width="50" height="40" color="#D9D0C1"></a-plane>
+        <a-plane src="/assets/textura-da-parede-preta.avif"" position=" 25 1 0" rotation="180 -90 0" width="50"
+            height="40" color="#D9D0C1"></a-plane>
+
+
+        <!-- Parede frontal dividida com espaço para uma porta -->
+        <a-plane src="/assets/paredeInterna.png" position="-25 1 15" rotation="0 90 0"
+            width="20" height="40" color="#D9D0C1"></a-plane>
+        <a-plane src="/assets/paredeInterna.png" position="-25 1 -15" rotation="0 90 0"
+            width="20" height="40" color="#D9D0C1"></a-plane>
+        <a-plane src="/assets/paredeInterna.png" position="-25 13 0" rotation="0 90 0"
+            width="5" height="16" scale="2 1 1" color="#D9D0C1"></a-plane>
+
+        <a-plane src="/assets/textura-da-parede-preta.avif" position="-25 1 15" rotation="0 -90 0" width="20"
+            height="40" color="#D9D0C1"></a-plane>
+        <a-plane src="/assets/textura-da-parede-preta.avif" position="-25 1 -15" rotation="0 -90 0" width="20"
+            height="40" color="#D9D0C1"></a-plane>
+        <a-plane src="/assets/textura-da-parede-preta.avif" position="-25 13 0" rotation="0 -90 0" width="5" height="16"
+            scale="2 1 1" color="#D9D0C1"></a-plane>
+
+
+
+
+        <!-- Nova Sala -->
+        <!-- Chão da nova sala -->
+        <a-plane src="https://cdn.glitch.global/6126bfd4-c325-4655-8862-6e5a9a516459/texturaLamin.jpg?v=1730306969867"
+            position="-30 -1 70" rotation="-90 0 0" width="40" height="40" static-body></a-plane>
+
+        <!-- Parede direita -->
+        <a-plane position="-10 1 70" src="/assets/paredeInterna.png" rotation="0 -90 0" width="40" height="20" color="#D9D0C1"></a-plane>
+
+        <!-- Parede esquerda -->
+        <a-plane position="-50 1 70" src="/assets/paredeInterna.png" rotation="0 90 0" width="40" height="20" color="#D9D0C1"></a-plane>
+
+        <!-- Parede frontal -->
+        <a-plane src="assets/palaciodaCultura.jpg" position="-30 1 50" rotation="0 180 0" width="40" height="20"
+            color="#D9D0C1"></a-plane>
+
+        <!-- Parede traseira -->
+        <a-plane position="-30 1 90" src="/assets/paredeInterna.png" rotation="0 180 0" width="40" height="20" color="#D9D0C1"></a-plane>
+
+        <!-- Teto da nova sala -->
+        <a-plane position="-30 11 70" src="/assets/paredeInterna.png" rotation="90 0 0" width="40" height="40" static-body></a-plane>B
+    </a-scene>
+</body>
+
+</html>
